@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ngành Hàn Quốc Học - Đại học Lạc Hồng</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            background-color: #2B4795;
+            padding: 0.8rem 4rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-logo img {
+            height: 60px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-logo img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+
+        .nav-links a:hover {
+            background-color: #2B4795;
+            color: rgb(0, 0, 0);
+        }
+
+        .nav-search {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .nav-search input {
+            padding: 0.8rem 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            width: 300px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-search input:focus {
+            border-color: #080808;
+            outline: none;
+            box-shadow: 0 0 5px rgba(43, 71, 149, 0.2);
+        }
+
+        .nav-search button {
+            padding: 0.8rem 1.5rem;
+            background-color: #2B4795;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-search button:hover {
+            background-color: #0000006b;
+            transform: translateY(-2px);
+        }
+
+        .nav-profile img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #2B4795;
+            transition: all 0.3s ease;
+        }
+
+        .nav-profile img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(43, 71, 149, 0.3);
+        }
+
+        /* Content styles */
+        .content {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+        }
+
+        .content h1 {
+            color: #2B4795;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-size: 2.8rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .content h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: #2B4795;
+            border-radius: 2px;
+        }
+
+        .content p {
+            text-align: justify;
+            margin-bottom: 1.8rem;
+            font-size: 1.1rem;
+            color: #444;
+            line-height: 1.8;
+        }
+
+        .content strong {
+            color: #2B4795;
+            font-size: 1.2rem;
+        }
+
+        /* Footer styles */
+        .footer {
+            background-image: url('/font-end/image/nhat ban.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            color: white;
+            padding: 4rem 2rem;
+            margin-top: 4rem;
+            margin-bottom: 0;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(43, 71, 149, 0.9); /* Màu overlay với độ trong suốt */
+            z-index: 1;
+        }
+
+        .footer-container {
+            position: relative;
+            z-index: 2; /* Đảm bảo nội dung hiển thị trên overlay */
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 3rem;
+        }
+
+        .footer-logo img {
+            width: 200px;
+            height: auto;
+            filter: brightness(1.2);
+        }
+
+        .footer-info h2 {
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .footer-info p {
+            margin: 0.8rem 0;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .footer-connect img {
+            width: 140px;
+            height: auto;
+            transition: all 0.3s ease;
+            filter: brightness(1.1);
+        }
+
+        .footer-connect img:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        /* Bottom image styles */
+        .bottom-image {
+            width: 100%;
+            margin-top: -1px; /* Để loại bỏ khoảng trắng giữa footer và ảnh */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .bottom-image img {
+            width: 100%;
+            height: 400px; /* Điều chỉnh chiều cao theo ý muốn */
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Điều chỉnh responsive cho bottom image */
+        @media (max-width: 768px) {
+            .bottom-image img {
+                height: 300px;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .navbar {
+                padding: 1rem 2rem;
+            }
+
+            .nav-search input {
+                width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                margin: 1rem 0;
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .nav-search {
+                width: 100%;
+            }
+
+            .nav-search input {
+                width: 100%;
+            }
+
+            .content h1 {
+                font-size: 2rem;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+        }
+        /* Responsive Design */
+        @media screen and (max-width: 1200px) {
+            .content {
+                margin: 2rem 1rem;
+            }
+    
+            .footer-container {
+                padding: 0 2rem;
+            }
+        }
+
+        @media screen and (max-width: 992px) {
+            .navbar {
+                padding: 1rem 2rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+            }
+
+            .nav-search input {
+                width: 200px;
+            }
+
+            .footer-logo img {
+                width: 150px;
+            }
+
+            .footer-info h2 {
+                font-size: 1.5rem;
+            }
+
+            .footer-info p {
+                font-size: 1rem;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+                gap: 1rem;
+                margin: 1rem 0;
+            }
+
+            .nav-search {
+                width: 100%;
+            }
+
+            .nav-search input {
+                width: 100%;
+            }
+
+            .content h1 {
+                font-size: 2rem;
+            }
+
+            .footer {
+                padding: 2rem 1rem;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .footer-logo img {
+                width: 120px;
+            }
+
+            .footer-connect img {
+                width: 100px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .navbar {
+                padding: 0.5rem;
+            }
+
+            .nav-logo img {
+                height: 40px;
+            }
+
+            .content {
+                padding: 1rem;
+            }
+
+            .content h1 {
+                font-size: 1.5rem;
+            }
+
+            .content p {
+                font-size: 1rem;
+            }
+
+            .footer-info h2 {
+                font-size: 1.3rem;
+            }
+
+            .footer-info p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-logo">
+            <img src="/font-end/image/logolachong.png" alt="Đại học Lạc Hồng">
+        </div>
+        <div class="nav-links">
+            <a href="#">Trang chủ</a>
+            <a href="#">Giới thiệu</a>
+            <a href="#">Hoạt động</a>
+            <a href="#">Bảng vàng danh dự</a>
+            <div class="dropdown">
+                <a href="#" class="dropdown-toggle">Ứng dụng của tôi</a>
+            </div>
+        </div>
+        <div class="nav-search">
+            <input type="text" placeholder="Nhập nội dung tìm kiếm">
+            <button type="submit"><i class="fas fa-search"><ion-icon name="search-outline"></ion-icon></i></button>
+        </div>
+        <div class="nav-profile">
+            <img src="/font-end/image/nhat ban.jpg" alt="Profile" class="profile-img">
+        </div>
+    </nav>
+    <div class="content">
+        <h1>QUÁ TRÌNH THÀNH LẬP</h1>
+        <p>Xuất phát từ nhu cầu cung ứng nguồn nhân lực cho sự nghiệp công nghiệp hóa của Đồng Nai nói riêng và khu vực kinh tế trọng điểm phía nam nói chung; nguyện vọng của Đảng bộ, Chính quyền và nhân dân Đồng Nai mong muốn có một trường đại học tại Đồng Nai.</p>
+        
+        <p><strong>Ra đời vì "nhu cầu bức thiết"...</strong></p>
+        
+        <p>Từ những năm 1993 – 1994 lãnh đạo tỉnh đã nhìn thấy nhu cầu bức thiết phải xây dựng một trường đại học tại Biên Hòa – Đồng Nai nhằm tạo nguồn nhân lực kịp thời đáp ứng đà phát triển kinh tế – xã hội tại tỉnh nhà...</p>
+        <p>Có nhiều ý kiến ​​về tên gọi của trường, nhưng cuối cùng, tất cả đều thống nhất rằng một trường đại học đào tạo nguồn nhân lực chất lượng cao cho đất nước, cho dân tộc thì những người được đào tạo phải nhớ về nguồn cội, tự hào là con cháu Lạc Hồng, xứng đáng với lời dạy của Chủ tịch Hồ Chí Minh: "Các vua Hùng đã dựng nước, con cháu chúng tôi phải ra sức giữ nước". Đó là lý do vì sao trường mang tên là Trường Đại học Lạc Hồng.</p>
+        <p>Ngày 29 tháng 9 năm 1995, Ủy ban nhân dân tỉnh đã ra quyết định công nhận Hội đồng sáng lập của Trường. Ngày 29 tháng 9 năm 1995, Chủ tịch Ủy ban nhân dân tỉnh Trần Thị Minh Hoàng đã có văn bản gửi Thủ tướng Chính phủ và Bộ Giáo dục và Đào tạo đề nghị thành lập Trường Đại học Dân lập Lạc Hồng. Trong thời gian chờ quyết định của Thủ tướng Chính phủ, một Ban Thường vụ Hội đồng sáng lập Trường do Phó Giáo sư, Tiến sĩ Đoàn Văn Điển làm Trưởng ban đã được thành lập với nhiệm vụ hoàn tất các công tác chuẩn bị cần thiết để một trường đại học có thể đi vào hoạt động khi có quyết định chính thức của Thủ tướng Chính phủ. Ngày 02/6/1997, Bộ trưởng Bộ Giáo dục và Đào tạo, GS.TS Trần Hồng Quân đã ký quyết định công nhận Hội đồng sáng lập Trường Đại học Dân lập Lạc Hồng do ông Nguyễn Trung Phương - Phó Chủ tịch UBND tỉnh làm Chủ tịch. Ngày 19/9/1997, Bộ trưởng đã lập Văn bản số 8140/TCCB về việc thành lập Trường Đại học Dân lập Lạc Hồng trình Chính phủ. Ngày 24/9/1997, Thủ tướng Chính phủ Võ Văn Kiệt đã ký Quyết định số 790/TTg chính thức thành lập Trường Đại học Dân lập Lạc Hồng tại Biên Hòa, tỉnh Đồng Nai. Ngày 17/10/1997, Bộ trưởng GS.TS Nguyễn Minh Hiển đã ký Quyết định số 3261/GD-ĐT công nhận Hội đồng quản trị của Trường do ông Nguyễn Trung Phương làm Chủ tịch. Ngày 31/10/1997, Bộ trưởng cũng đã ký Quyết định số 3463/GD-ĐT bổ nhiệm PGS.TS Đoàn Văn Điển làm Hiệu trưởng Nhà trường.</p>
+        <!-- Add more content paragraphs as needed -->
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="/font-end/image/logolachong2.png" alt="Đại học Lạc Hồng">
+            </div>
+            <div class="footer-info">
+                <h2>Ngành Hàn Quốc Học</h2>
+                <p>Địa chỉ: Số 10, Huỳnh Văn Nghệ, P. Bửu Long, Tp. Biên Hòa - Tỉnh Đồng Nai</p>
+                <p>Điện thoại: 0251.3952.778</p>
+                <p>Email: lachong@lhu.edu.vn</p>
+            </div>
+            <div class="footer-connect">
+                <img src="/font-end/image/unnamed.png" alt="Ứng dụng kết nối">
+            </div>
+        </div>
+    </footer>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
